@@ -1,38 +1,73 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  height: 100vh;
+  /* background: linear-gradient(135deg, rgba(250, 251, 253, 1) 0%, rgba(228, 230, 239, 1) 100%); */
+  background: linear-gradient(
+    135deg,
+    rgba(250, 250, 252, 1) 0%,
+    rgba(245, 246, 248, 1) 100%
+  );
 }
 
-.App {
-  text-align: center;
+.bounding-box {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.panel {
+  height: 70vh;
+  min-height: 500px;
+  padding: 16px 0px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04),
+    0px 30px 40px -15px rgba(0, 0, 0, 0.06);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.section-list {
+  height: 100%;
+  overflow-y: scroll;
 }
 
-.App-title {
-  font-size: 1.5em;
+.section-list .section-header {
+  margin: 0.8rem 20px 0.2rem;
 }
 
-.App-intro {
-  font-size: large;
+.section-list .list-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+  cursor: pointer;
+  transition: all 0.1s linear;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.section-list .list-row:hover {
+  background-color: rgba(216, 222, 229, 0.2);
+}
+
+.section-list .avatar {
+  width: 48px;
+  margin-right: 8px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.section-list .avatar > img {
+  width: 100%;
+  border-radius: 65px;
+}
+
+.section-list .list-row .list-data {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  width: 78%;
+  border-bottom: 1px solid rgba(216, 222, 229, 0.5);
+}
+
+.section-list .list-row .list-data > p {
+  margin: 0 0 0 12px;
 }
