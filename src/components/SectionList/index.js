@@ -4,10 +4,11 @@ import 'assets/style.css';
 
 export default class SectionList extends Component {
   renderSections = section => {
-    console.log(section);
     return (
       <div key={section.title}>
-        <h6 className="section-header">{section.title}</h6>
+        <div className="section-header">
+          <h6>{section.title.toUpperCase()}</h6>
+        </div>
         {section.data.map((obj, index) => this.renderRows(obj, index))}
       </div>
     );
@@ -24,7 +25,9 @@ export default class SectionList extends Component {
           <img src={person.picture.large} alt="" />
         </div>
         <div className="list-data">
-          <p>{`${fname} ${lname}`}</p>
+          <p>
+            {fname} <span style={{ fontWeight: '600' }}>{lname}</span>
+          </p>
         </div>
       </div>
     );

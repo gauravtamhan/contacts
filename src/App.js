@@ -13,143 +13,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let fakeuserdata = [
-      {
-        title: 'A',
-        data: [
-          {
-            name: {
-              title: 'mrs',
-              first: 'vilma',
-              last: 'monteiro'
-            },
-            location: {
-              street: '5042 rua santa maria ',
-              city: 'guarulhos',
-              state: 'paraná',
-              postcode: 69469
-            },
-            email: 'vilma.monteiro@example.com',
-            dob: {
-              date: '1958-04-10T15:53:03Z',
-              age: 60
-            },
-            phone: '(35) 7830-7305',
-            cell: '(47) 6461-0686',
-            id: {
-              name: 'FN',
-              value: '26067242946'
-            },
-            picture: {
-              large: 'https://randomuser.me/api/portraits/women/24.jpg',
-              medium: 'https://randomuser.me/api/portraits/med/women/24.jpg',
-              thumbnail:
-                'https://randomuser.me/api/portraits/thumb/women/24.jpg'
-            },
-            nat: 'BR'
-          },
-          {
-            name: {
-              title: 'mr',
-              first: 'jose',
-              last: 'monteiro'
-            },
-            location: {
-              street: '5042 rua santa maria ',
-              city: 'guarulhos',
-              state: 'paraná',
-              postcode: 69469
-            },
-            email: 'vilma.monteiro@example.com',
-            dob: {
-              date: '1958-04-10T15:53:03Z',
-              age: 60
-            },
-            phone: '(35) 7830-7305',
-            cell: '(47) 6461-0686',
-            id: {
-              name: 'FN',
-              value: '26067242946'
-            },
-            picture: {
-              large: 'https://randomuser.me/api/portraits/women/24.jpg',
-              medium: 'https://randomuser.me/api/portraits/med/women/24.jpg',
-              thumbnail:
-                'https://randomuser.me/api/portraits/thumb/women/24.jpg'
-            },
-            nat: 'BR'
-          }
-        ]
-      },
-      {
-        title: 'B',
-        data: [
-          {
-            name: {
-              title: 'mrs',
-              first: 'vilma',
-              last: 'monteiro'
-            },
-            location: {
-              street: '5042 rua santa maria ',
-              city: 'guarulhos',
-              state: 'paraná',
-              postcode: 69469
-            },
-            email: 'vilma.monteiro@example.com',
-            dob: {
-              date: '1958-04-10T15:53:03Z',
-              age: 60
-            },
-            phone: '(35) 7830-7305',
-            cell: '(47) 6461-0686',
-            id: {
-              name: 'FN',
-              value: '26067242946'
-            },
-            picture: {
-              large: 'https://randomuser.me/api/portraits/women/24.jpg',
-              medium: 'https://randomuser.me/api/portraits/med/women/24.jpg',
-              thumbnail:
-                'https://randomuser.me/api/portraits/thumb/women/24.jpg'
-            },
-            nat: 'BR'
-          },
-          {
-            name: {
-              title: 'mr',
-              first: 'jose',
-              last: 'monteiro'
-            },
-            location: {
-              street: '5042 rua santa maria ',
-              city: 'guarulhos',
-              state: 'paraná',
-              postcode: 69469
-            },
-            email: 'vilma.monteiro@example.com',
-            dob: {
-              date: '1958-04-10T15:53:03Z',
-              age: 60
-            },
-            phone: '(35) 7830-7305',
-            cell: '(47) 6461-0686',
-            id: {
-              name: 'FN',
-              value: '26067242946'
-            },
-            picture: {
-              large: 'https://randomuser.me/api/portraits/women/24.jpg',
-              medium: 'https://randomuser.me/api/portraits/med/women/24.jpg',
-              thumbnail:
-                'https://randomuser.me/api/portraits/thumb/women/24.jpg'
-            },
-            nat: 'BR'
-          }
-        ]
-      }
-    ];
-    this.setState({ users: fakeuserdata });
+    fetch('https://randomuser.me/api/?results=30&exc=login,registered,gender')
+      .then(res => res.json())
+      .then(data => {
+        data.results.sort((a, b) => {
+          let nameA = a.name.last.toLowerCase();
+          let nameB = b.name.last.toLowerCase();
+          return nameA < nameB ? -1 : nameA > nameB ? 1 : 0;
+        });
+        let d = data.results.reduce((r, e) => {
+          let title = e.name.last[0];
+          if (!r[title]) r[title] = { title, data: [e] };
+          else r[title].data.push(e);
+          return r;
+        }, {});
+        let result = Object.values(d);
+        this.setState({ users: result });
+      });
   }
 
   render() {
