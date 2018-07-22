@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Panel from 'components/Panel/index.js';
 import SectionList from 'components/SectionList/index.js';
+import Detail from 'components/Detail/index.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'assets/style.css';
 
@@ -8,12 +9,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
+      loaded: false,
+      selected: {
+        section: 0,
+        row: 0
+      }
     };
   }
 
   componentDidMount() {
-    fetch('https://randomuser.me/api/?results=30&exc=login,registered,gender')
+    fetch(
+      'https://randomuser.me/api/?results=30&exc=login,id,registered,gender'
+    )
       .then(res => res.json())
       .then(data => {
         data.results.sort((a, b) => {
@@ -28,24 +36,39 @@ class App extends Component {
           return r;
         }, {});
         let result = Object.values(d);
-        this.setState({ users: result });
+        this.setState({ users: result, loaded: true });
       });
   }
 
+  updateSelectedPerson(rowIndex, sectionIndex) {
+    this.setState(prevState => ({
+      selected: {
+        ...prevState.selected,
+        section: sectionIndex,
+        row: rowIndex
+      }
+    }));
+  }
+
   render() {
-    const { users } = this.state;
+    const { users, selected, loaded } = this.state;
+    let selectedPerson = loaded
+      ? users[selected.section].data[selected.row]
+      : null;
     return (
       <div className="container">
         <div className="row bounding-box">
           <div className="col-4">
             <Panel>
-              <SectionList data={users} />
+              <SectionList
+                data={users}
+                selected={selected}
+                onPersonChange={this.updateSelectedPerson.bind(this)}
+              />
             </Panel>
           </div>
           <div className="col-8">
-            <Panel>
-              <p>Hi</p>
-            </Panel>
+            <Panel>{loaded && <Detail data={selectedPerson} />}</Panel>
           </div>
         </div>
       </div>
