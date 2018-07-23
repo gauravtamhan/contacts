@@ -17,11 +17,14 @@ class App extends Component {
         row: 0
       },
       searchTerm: '',
-      searching: false
+      searching: false,
+      windowTooSmall: null
     };
   }
 
   componentDidMount() {
+    this.checkWindowSize();
+    window.addEventListener('resize', this.checkWindowSize);
     fetch(
       'https://randomuser.me/api/?results=30&exc=login,id,registered,gender'
     )
@@ -39,6 +42,18 @@ class App extends Component {
         });
       });
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.checkWindowSize);
+  }
+
+  checkWindowSize = () => {
+    if (window.innerWidth < 992) {
+      this.setState({ windowTooSmall: true });
+    } else {
+      this.setState({ windowTooSmall: false });
+    }
+  };
 
   updateSelectedPerson(rowIndex, sectionIndex) {
     this.setState(prevState => ({
@@ -82,7 +97,7 @@ class App extends Component {
   }
 
   render() {
-    const { selected, loaded, searchTerm } = this.state;
+    const { selected, loaded, searchTerm, windowTooSmall } = this.state;
     let dataSource = this.generateDataSource();
     let selectedPerson =
       loaded &&
@@ -93,43 +108,62 @@ class App extends Component {
         : null;
     return (
       <div className="container">
-        <div className="row bounding-box">
-          <div className="col-4">
-            <Panel>
-              <div className="input-group">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="basic-addon1">
-                    @
-                  </span>
+        {!windowTooSmall && (
+          <div className="row bounding-box">
+            <div className="col-4">
+              <Panel>
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text" id="basic-addon1">
+                      @
+                    </span>
+                  </div>
+                  <input
+                    type="search"
+                    className="form-control"
+                    onChange={this.handleSearch.bind(this)}
+                    value={searchTerm}
+                    onFocus={() => {
+                      this.setState({ searching: true });
+                    }}
+                    placeholder="Contacts"
+                    autoComplete="off"
+                  />
                 </div>
-                <input
-                  type="search"
-                  className="form-control"
-                  onChange={this.handleSearch.bind(this)}
-                  value={searchTerm}
-                  onFocus={() => {
-                    this.setState({ searching: true });
-                  }}
-                  placeholder="Contacts"
-                  autoComplete="off"
-                />
-              </div>
 
-              <SectionList
-                data={dataSource}
-                searching={this.state.searching}
-                selected={selected}
-                onPersonChange={this.updateSelectedPerson.bind(this)}
-              />
-            </Panel>
+                <SectionList
+                  data={dataSource}
+                  searching={this.state.searching}
+                  selected={selected}
+                  onPersonChange={this.updateSelectedPerson.bind(this)}
+                />
+              </Panel>
+            </div>
+            <div className="col-8">
+              <Panel>
+                {loaded &&
+                  selectedPerson !== null && <Detail data={selectedPerson} />}
+              </Panel>
+            </div>
           </div>
-          <div className="col-8">
-            <Panel>
-              {loaded &&
-                selectedPerson !== null && <Detail data={selectedPerson} />}
-            </Panel>
+        )}
+        {windowTooSmall && (
+          <div className="row bounding-box">
+            <div className="row">
+              <div className="col-3 middle">
+                <h2 className="too-small text-right">&larr;</h2>
+              </div>
+              <div className="col-6">
+                <h2 className="too-small text-center">
+                  Increase the size of your window
+                </h2>
+              </div>
+              <div className="col-3 middle">
+                <h2 className="too-small text-left">&rarr;</h2>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }

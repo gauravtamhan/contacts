@@ -190,3 +190,13 @@ input.form-control:focus {
 input[type='search']::-webkit-search-cancel-button {
   -webkit-appearance: searchfield-cancel-button;
 }
+
+.too-small {
+  font-weight: 300;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
