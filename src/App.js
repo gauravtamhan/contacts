@@ -84,15 +84,13 @@ class App extends Component {
   render() {
     const { selected, loaded, searchTerm } = this.state;
     let dataSource = this.generateDataSource();
-    let selectedPerson = loaded
-      ? dataSource.length === 0
-        ? null
-        : dataSource[selected.section] === undefined
-          ? null
-          : dataSource[selected.section].data[selected.row] === undefined
-            ? null
-            : dataSource[selected.section].data[selected.row]
-      : null;
+    let selectedPerson =
+      loaded &&
+      dataSource.length > 0 &&
+      dataSource[selected.section] !== undefined &&
+      dataSource[selected.section].data[selected.row] !== undefined
+        ? dataSource[selected.section].data[selected.row]
+        : null;
     return (
       <div className="container">
         <div className="row bounding-box">
