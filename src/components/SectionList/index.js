@@ -46,12 +46,18 @@ export default class SectionList extends Component {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, searching } = this.props;
     return (
       <div className="section-list">
         {data.map((section, sectionIndex) =>
           this.renderSections(section, sectionIndex)
         )}
+        {data.length === 0 &&
+          searching && (
+            <div className="no-results">
+              Your search did not match any results.
+            </div>
+          )}
       </div>
     );
   }
