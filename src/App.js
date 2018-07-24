@@ -107,7 +107,7 @@ class App extends Component {
         ? dataSource[selected.section].data[selected.row]
         : null;
     return (
-      <div className="container">
+      <div className={!windowTooSmall ? 'container' : 'container-fluid'}>
         {!windowTooSmall && (
           <div className="row bounding-box">
             <div className="col-4">
@@ -149,18 +149,16 @@ class App extends Component {
         )}
         {windowTooSmall && (
           <div className="row bounding-box">
-            <div className="row">
-              <div className="col-3 middle">
-                <h2 className="too-small text-right">&larr;</h2>
-              </div>
-              <div className="col-6">
-                <h2 className="too-small text-center">
-                  Increase the size of your window
-                </h2>
-              </div>
-              <div className="col-3 middle">
-                <h2 className="too-small text-left">&rarr;</h2>
-              </div>
+            <div className="col-2 middle">
+              <h2 className="too-small text-right">&larr;</h2>
+            </div>
+            <div className="col-8">
+              <h2 className="too-small text-center">
+                Increase the size of your window
+              </h2>
+            </div>
+            <div className="col-2 middle">
+              <h2 className="too-small text-left">&rarr;</h2>
             </div>
           </div>
         )}
