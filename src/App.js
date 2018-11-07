@@ -26,7 +26,7 @@ class App extends Component {
     this.checkWindowSize();
     window.addEventListener('resize', this.checkWindowSize);
     fetch(
-      'https://randomuser.me/api/?results=30&exc=login,id,registered,gender'
+      'https://randomuser.me/api/1.1/?results=30&exc=login,id,registered,gender'
     )
       .then(res => res.json())
       .then(data => {
@@ -107,7 +107,11 @@ class App extends Component {
         ? dataSource[selected.section].data[selected.row]
         : null;
     return (
-      <div className={!windowTooSmall ? 'container' : 'container-fluid'}>
+      <div
+        className={
+          !windowTooSmall ? 'container trans-bounce' : 'container-fluid'
+        }
+      >
         {!windowTooSmall && (
           <div className="row bounding-box">
             <div className="col-4">

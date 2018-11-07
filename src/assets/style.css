@@ -8,6 +8,10 @@ body {
   );
 }
 
+.trans-bounce {
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
 .bounding-box {
   height: 100vh;
   display: flex;
