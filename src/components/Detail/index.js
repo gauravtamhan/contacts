@@ -39,7 +39,7 @@ export default class Detail extends Component {
         let fname = this.toCapital(data.name.first);
         let lname = this.toCapital(data.name.last);
         let title = this.toCapital(data.name.title);
-        let bday = new Date(data.dob).toLocaleDateString('en-US', {
+        let bday = new Date(data.dob.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',

@@ -25,9 +25,7 @@ class App extends Component {
     componentDidMount() {
         this.checkWindowSize();
         window.addEventListener('resize', this.checkWindowSize);
-        fetch(
-            'https://randomuser.me/api/1.1/?results=30&exc=login,id,registered,gender'
-        )
+        fetch('https://randomuser.me/api/1.2/?results=30&exc=login,registered')
             .then(res => res.json())
             .then(data => {
                 data.results.sort((a, b) => {
