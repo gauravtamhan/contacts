@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Panel from 'components/Panel/index.js';
 import SectionList from 'components/SectionList/index.js';
 import Detail from 'components/Detail/index.js';
+import Loader from 'components/Loader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'assets/style.css';
 
@@ -12,10 +13,7 @@ class App extends Component {
             users: [],
             filteredList: [],
             loaded: false,
-            selected: {
-                section: 0,
-                row: 0,
-            },
+            selectedUserSSN: undefined,
             searchTerm: '',
             searching: false,
             windowTooSmall: null,
@@ -25,7 +23,9 @@ class App extends Component {
     componentDidMount() {
         this.checkWindowSize();
         window.addEventListener('resize', this.checkWindowSize);
-        fetch('https://randomuser.me/api/1.2/?results=30&exc=login,registered')
+        fetch(
+            'https://randomuser.me/api/1.2/?results=30&exc=login,registered&nat=us'
+        )
             .then(res => res.json())
             .then(data => {
                 data.results.sort((a, b) => {
@@ -53,14 +53,8 @@ class App extends Component {
         }
     };
 
-    updateSelectedPerson(rowIndex, sectionIndex) {
-        this.setState(prevState => ({
-            selected: {
-                ...prevState.selected,
-                section: sectionIndex,
-                row: rowIndex,
-            },
-        }));
+    updateSelectedPerson(selectedUserSSN) {
+        this.setState({ selectedUserSSN });
     }
 
     escapeRegExp(str) {
@@ -76,7 +70,11 @@ class App extends Component {
         let temp = users.filter(obj =>
             (obj.name.first + ' ' + obj.name.last).match(new RegExp(regex, 'i'))
         );
-
+        if (searchTerm === '') {
+            this.setState({ searching: false });
+        } else {
+            this.setState({ searching: true });
+        }
         this.setState({ searchTerm: searchTerm, filteredList: temp });
     }
 
@@ -95,69 +93,79 @@ class App extends Component {
     }
 
     render() {
-        const { selected, loaded, searchTerm, windowTooSmall } = this.state;
-        let dataSource = this.generateDataSource();
-        let selectedPerson =
-            loaded &&
-            dataSource.length > 0 &&
-            dataSource[selected.section] !== undefined &&
-            dataSource[selected.section].data[selected.row] !== undefined
-                ? dataSource[selected.section].data[selected.row]
-                : null;
-        return (
-            <div
-                className={
-                    !windowTooSmall
-                        ? 'container trans-bounce'
-                        : 'container-fluid'
-                }
-            >
-                {!windowTooSmall && (
-                    <div className="row bounding-box">
-                        <div className="col-4">
-                            <Panel>
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <span
-                                            className="input-group-text"
-                                            id="basic-addon1"
-                                        >
-                                            @
-                                        </span>
-                                    </div>
-                                    <input
-                                        type="search"
-                                        className="form-control"
-                                        onChange={this.handleSearch.bind(this)}
-                                        value={searchTerm}
-                                        onFocus={() => {
-                                            this.setState({ searching: true });
-                                        }}
-                                        placeholder="Contacts"
-                                        autoComplete="off"
-                                    />
-                                </div>
+        const {
+            selectedUserSSN,
+            filteredList,
+            loaded,
+            searchTerm,
+            windowTooSmall,
+        } = this.state;
 
-                                <SectionList
-                                    data={dataSource}
-                                    searching={this.state.searching}
-                                    selected={selected}
-                                    onPersonChange={this.updateSelectedPerson.bind(
-                                        this
-                                    )}
-                                />
-                            </Panel>
+        const dataSource = this.generateDataSource();
+
+        const selectedPerson =
+            dataSource.length > 0 && selectedUserSSN
+                ? filteredList.find(obj => obj.id.value === selectedUserSSN)
+                    ? filteredList.find(obj => obj.id.value === selectedUserSSN)
+                    : dataSource[0].data[0]
+                : null;
+
+        return (
+            <div className={!windowTooSmall ? 'container' : 'container-fluid'}>
+                {!windowTooSmall &&
+                    loaded && (
+                        <div className="row bounding-box">
+                            <div className="col-4">
+                                <Panel>
+                                    <div className="input-group">
+                                        <div className="input-group-prepend">
+                                            <span
+                                                className="input-group-text"
+                                                id="basic-addon1"
+                                            >
+                                                @
+                                            </span>
+                                        </div>
+                                        <input
+                                            type="search"
+                                            className="form-control"
+                                            onChange={this.handleSearch.bind(
+                                                this
+                                            )}
+                                            value={searchTerm}
+                                            placeholder="Contacts"
+                                            autoComplete="off"
+                                        />
+                                    </div>
+
+                                    <SectionList
+                                        data={dataSource}
+                                        searching={this.state.searching}
+                                        selectedPerson={selectedPerson}
+                                        onPersonChange={this.updateSelectedPerson.bind(
+                                            this
+                                        )}
+                                    />
+                                </Panel>
+                            </div>
+                            <div className="col-8">
+                                <Panel>
+                                    {loaded &&
+                                        selectedPerson && (
+                                            <Detail data={selectedPerson} />
+                                        )}
+                                </Panel>
+                            </div>
                         </div>
-                        <div className="col-8">
-                            <Panel>
-                                {loaded &&
-                                    selectedPerson !== null && (
-                                        <Detail data={selectedPerson} />
-                                    )}
-                            </Panel>
+                    )}
+                {!windowTooSmall &&
+                    !loaded && (
+                        <div className="row bounding-box">
+                            <div className="col-12">
+                                <Loader />
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
                 {windowTooSmall && (
                     <div className="row bounding-box">
                         <div className="col-2 middle">

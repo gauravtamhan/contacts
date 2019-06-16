@@ -28,14 +28,12 @@ export default class SectionList extends Component {
                 key={rowIndex}
                 className={
                     'list-row ' +
-                    (this.props.selected.section === sectionIndex &&
-                    this.props.selected.row === rowIndex
+                    (this.props.selectedPerson &&
+                    this.props.selectedPerson.id.value === person.id.value
                         ? 'active'
                         : '')
                 }
-                onClick={() =>
-                    this.props.onPersonChange(rowIndex, sectionIndex)
-                }
+                onClick={() => this.props.onPersonChange(person.id.value)}
             >
                 <div className="avatar">
                     <img src={person.picture.medium} alt="" />
