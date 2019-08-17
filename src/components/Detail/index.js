@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FontAwesomeIcons from 'components/FontAwesomeIcons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'assets/style.css';
 
@@ -65,14 +66,19 @@ export default class Detail extends Component {
                             />
                         </div>
                         <div className="col-7 center">
-                            <h5 className="thin">{title}</h5>
-                            <h2 className="thin">{`${fname} ${lname}`}</h2>
+                            <h5>{title}</h5>
+                            <h2>{`${fname} ${lname}`}</h2>
                         </div>
                     </div>
                     <div className="separator" />
                     <div className="row">
                         <div className="col-5 right">
                             <p className="label">Home phone:</p>
+                            {/* <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 5, width: 100 }}>
+                                <div className="icon-border">
+                                    <FontAwesomeIcons icon="phone-alt" fixedWidth />
+                                </div>
+                            </div> */}
                         </div>
                         <div className="col-7">
                             <p>{data.phone}</p>

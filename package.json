@@ -4,6 +4,9 @@
     "private": true,
     "homepage": "https://gauravtamhan.github.io/contacts/",
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.21",
+        "@fortawesome/free-solid-svg-icons": "^5.10.1",
+        "@fortawesome/react-fontawesome": "^0.1.4",
         "bootstrap": "^4.3.1",
         "gh-pages": "^1.2.0",
         "husky": "^0.14.3",

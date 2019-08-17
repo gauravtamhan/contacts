@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FontAwesomeIcons from 'components/FontAwesomeIcons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'assets/style.css';
 
@@ -43,6 +44,9 @@ export default class SectionList extends Component {
                         {fname}{' '}
                         <span style={{ fontWeight: '600' }}>{lname}</span>
                     </p>
+                </div>
+                <div className="list-extra d-lg-none">
+                    <FontAwesomeIcons icon="angle-right" />
                 </div>
             </div>
         );

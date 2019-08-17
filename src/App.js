@@ -111,7 +111,7 @@ class App extends Component {
                 : null;
 
         return (
-            <div className={!windowTooSmall ? 'container' : 'container-fluid'}>
+            <div className="container">
                 {!windowTooSmall &&
                     loaded && (
                         <div className="row bounding-box">
@@ -168,16 +168,36 @@ class App extends Component {
                     )}
                 {windowTooSmall && (
                     <div className="row bounding-box">
-                        <div className="col-2 middle">
-                            <h2 className="too-small text-right">&larr;</h2>
-                        </div>
-                        <div className="col-8">
-                            <h2 className="too-small text-center">
-                                Increase the size of your window
-                            </h2>
-                        </div>
-                        <div className="col-2 middle">
-                            <h2 className="too-small text-left">&rarr;</h2>
+                        <div className="col-12">
+                            <Panel>
+                                <div className="input-group">
+                                    <div className="input-group-prepend">
+                                        <span
+                                            className="input-group-text"
+                                            id="basic-addon1"
+                                        >
+                                            @
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="search"
+                                        className="form-control"
+                                        onChange={this.handleSearch.bind(this)}
+                                        value={searchTerm}
+                                        placeholder="Contacts"
+                                        autoComplete="off"
+                                    />
+                                </div>
+
+                                <SectionList
+                                    data={dataSource}
+                                    searching={this.state.searching}
+                                    selectedPerson={selectedPerson}
+                                    onPersonChange={this.updateSelectedPerson.bind(
+                                        this
+                                    )}
+                                />
+                            </Panel>
                         </div>
                     </div>
                 )}
