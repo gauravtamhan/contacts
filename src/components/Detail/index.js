@@ -71,38 +71,46 @@ export default class Detail extends Component {
                         </div>
                     </div>
                     <div className="separator" />
-                    <div className="row">
+                    <div className="row align-items-center spacer">
                         <div className="col-5 right">
-                            <p className="label">Home phone:</p>
-                            {/* <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 5, width: 100 }}>
+                            <div className="icon-container">
                                 <div className="icon-border">
-                                    <FontAwesomeIcons icon="phone-alt" fixedWidth />
+                                    <FontAwesomeIcons
+                                        icon="phone-alt"
+                                        fixedWidth
+                                    />
                                 </div>
-                            </div> */}
+                            </div>
                         </div>
                         <div className="col-7">
                             <p>{data.phone}</p>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row align-items-center spacer">
                         <div className="col-5 right">
-                            <p className="label">Cell phone:</p>
-                        </div>
-                        <div className="col-7">
-                            <p>{data.cell}</p>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-5 right">
-                            <p className="label">E-mail:</p>
+                            <div className="icon-container">
+                                <div className="icon-border">
+                                    <FontAwesomeIcons
+                                        icon="envelope"
+                                        fixedWidth
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div className="col-7">
                             <p>{data.email}</p>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row align-items-center spacer">
                         <div className="col-5 right">
-                            <p className="label">Birthday:</p>
+                            <div className="icon-container">
+                                <div className="icon-border">
+                                    <FontAwesomeIcons
+                                        icon="birthday-cake"
+                                        fixedWidth
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div className="col-7">
                             <p>
@@ -116,9 +124,16 @@ export default class Detail extends Component {
                             </p>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row align-items-center spacer">
                         <div className="col-5 right">
-                            <p className="label">Address:</p>
+                            <div className="icon-container">
+                                <div className="icon-border">
+                                    <FontAwesomeIcons
+                                        icon="map-marker-alt"
+                                        fixedWidth
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div className="col-7 address-text">
                             <p>{street}</p>
