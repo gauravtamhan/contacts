@@ -58,21 +58,24 @@ export default class Detail extends Component {
             <div className="detail-container">
                 <div className="detail-box">
                     <div className="row">
-                        <div className="col-5 right">
+                        <div className="col-sm-4 d-flex justify-content-center spacer">
                             <img
                                 className="avatar-lg"
                                 src={data.picture.large}
                                 alt=""
                             />
                         </div>
-                        <div className="col-7 center">
+                        <div className="col-sm-8 d-none d-sm-flex name-container">
                             <h5>{title}</h5>
+                            <h2>{`${fname} ${lname}`}</h2>
+                        </div>
+                        <div className="col-12 d-flex d-sm-none justify-content-center">
                             <h2>{`${fname} ${lname}`}</h2>
                         </div>
                     </div>
                     <div className="separator" />
                     <div className="row align-items-center spacer">
-                        <div className="col-5 right">
+                        <div className="col-3 col-sm-4 d-flex justify-content-center">
                             <div className="icon-container">
                                 <div className="icon-border">
                                     <FontAwesomeIcons
@@ -82,12 +85,12 @@ export default class Detail extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-7">
+                        <div className="col-9 col-sm-8">
                             <p>{data.phone}</p>
                         </div>
                     </div>
                     <div className="row align-items-center spacer">
-                        <div className="col-5 right">
+                        <div className="col-3 col-sm-4 d-flex justify-content-center">
                             <div className="icon-container">
                                 <div className="icon-border">
                                     <FontAwesomeIcons
@@ -97,12 +100,12 @@ export default class Detail extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-7">
+                        <div className="col-9 col-sm-8">
                             <p>{data.email}</p>
                         </div>
                     </div>
                     <div className="row align-items-center spacer">
-                        <div className="col-5 right">
+                        <div className="col-3 col-sm-4 d-flex justify-content-center">
                             <div className="icon-container">
                                 <div className="icon-border">
                                     <FontAwesomeIcons
@@ -112,7 +115,7 @@ export default class Detail extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-7">
+                        <div className="col-9 col-sm-8">
                             <p>
                                 {bday}{' '}
                                 <span
@@ -125,7 +128,7 @@ export default class Detail extends Component {
                         </div>
                     </div>
                     <div className="row align-items-center spacer">
-                        <div className="col-5 right">
+                        <div className="col-3 col-sm-4 d-flex justify-content-center">
                             <div className="icon-container">
                                 <div className="icon-border">
                                     <FontAwesomeIcons
@@ -135,7 +138,7 @@ export default class Detail extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-7 address-text">
+                        <div className="col-9 col-sm-8 address-text">
                             <p>{street}</p>
                             <p>{address}</p>
                             <p>{nat}</p>
