@@ -3,6 +3,8 @@ import ResponsivePanels from 'components/ResponsivePanels';
 import SectionList from 'components/SectionList';
 import Detail from 'components/Detail';
 import Loader from 'components/Loader';
+import FontAwesomeIcons from 'components/FontAwesomeIcons';
+import NoSelection from 'components/NoSelection';
 
 class App extends Component {
     constructor(props) {
@@ -36,13 +38,13 @@ class App extends Component {
             });
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        const { contactList } = this.state;
+    // componentDidUpdate(prevProps, prevState) {
+    //     const { contactList } = this.state;
 
-        if (prevState.contactList !== contactList) {
-            this.setState({ selectedPersonID: contactList[0].id.value });
-        }
-    }
+    //     if (prevState.contactList !== contactList) {
+    //         this.setState({ selectedPersonID: contactList[0].id.value });
+    //     }
+    // }
 
     updateSelectedPerson(selectedPersonID) {
         this.setState({ selectedPersonID });
@@ -103,7 +105,7 @@ class App extends Component {
                 <div className="input-group">
                     <div className="input-group-prepend">
                         <span className="input-group-text" id="basic-addon1">
-                            @
+                            <FontAwesomeIcons icon="search" fixedWidth />
                         </span>
                     </div>
                     <input
@@ -111,7 +113,7 @@ class App extends Component {
                         className="form-control"
                         onChange={this.handleSearch.bind(this)}
                         value={searchTerm}
-                        placeholder="Contacts"
+                        placeholder="Search"
                         autoComplete="off"
                     />
                 </div>
@@ -125,8 +127,10 @@ class App extends Component {
             </Fragment>
         );
 
-        const RightPanelContent = selectedPerson && (
+        const RightPanelContent = selectedPerson ? (
             <Detail data={selectedPerson} />
+        ) : (
+            <NoSelection />
         );
 
         return (

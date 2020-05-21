@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import FontAwesomeIcons from 'components/FontAwesomeIcons';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'assets/style.css';
 
 export default class Detail extends Component {
     toCapital(s) {
