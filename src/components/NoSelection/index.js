@@ -9,6 +9,7 @@ export default class NoSelection extends PureComponent {
                         <img
                             style={{
                                 width: 140,
+                                height: 140,
                                 marginBottom: '1rem',
                                 marginTop: '-2.5rem',
                             }}
@@ -17,7 +18,7 @@ export default class NoSelection extends PureComponent {
                         />
                     </div>
                     <div className="d-flex justify-content-center">
-                        <h5 style={{ color: '#d2d5da', fontWeight: '400' }}>
+                        <h5 className="no-selection-text">
                             No contact selected
                         </h5>
                     </div>

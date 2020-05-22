@@ -109,7 +109,7 @@ class App extends Component {
                         </span>
                     </div>
                     <input
-                        type="search"
+                        type="text"
                         className="form-control"
                         onChange={this.handleSearch.bind(this)}
                         value={searchTerm}
