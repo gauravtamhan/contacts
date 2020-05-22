@@ -9,7 +9,12 @@ import NoSelection from 'components/NoSelection';
 class App extends Component {
     constructor(props) {
         super(props);
+
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+            .matches;
+
         this.state = {
+            useLightImg: !isDarkMode,
             contactList: [],
             filteredList: [],
             isLoading: true,
@@ -20,6 +25,10 @@ class App extends Component {
     }
 
     componentDidMount() {
+        window
+            .matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', this.checkDarkMode);
+
         fetch(
             'https://randomuser.me/api/1.2/?results=30&exc=login,registered&nat=us'
         )
@@ -45,6 +54,16 @@ class App extends Component {
     //         this.setState({ selectedPersonID: contactList[0].id.value });
     //     }
     // }
+
+    componentWillUnmount() {
+        window
+            .matchMedia('(prefers-color-scheme: dark)')
+            .removeEventListener('change', this.checkDarkMode);
+    }
+
+    checkDarkMode = event => {
+        this.setState({ useLightImg: !event.matches });
+    };
 
     updateSelectedPerson(selectedPersonID) {
         this.setState({ selectedPersonID });
@@ -91,6 +110,7 @@ class App extends Component {
             filteredList,
             isLoading,
             searchTerm,
+            useLightImg,
         } = this.state;
 
         const dataSource = this.generateDataSource();
@@ -130,7 +150,7 @@ class App extends Component {
         const RightPanelContent = selectedPerson ? (
             <Detail data={selectedPerson} />
         ) : (
-            <NoSelection />
+            <NoSelection useLightImg={useLightImg} />
         );
 
         return (

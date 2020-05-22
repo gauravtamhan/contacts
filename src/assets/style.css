@@ -441,6 +441,10 @@ button:focus {
     .detail-box {
         width: 100%;
     }
+
+    html {
+        font-size: 17px;
+    }
 }
 
 input[type='search']::-webkit-search-cancel-button {

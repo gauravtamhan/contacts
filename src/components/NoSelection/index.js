@@ -1,20 +1,28 @@
 import React, { PureComponent } from 'react';
 
+const light = require('assets/light.png');
+const dark = require('assets/dark.png');
+
 export default class NoSelection extends PureComponent {
     render() {
+        const { useLightImg } = this.props;
+
         return (
             <div className="detail-container">
                 <div className="detail-box d-flex flex-column">
                     <div className="d-flex justify-content-center">
-                        <img
+                        <div
                             style={{
                                 width: 140,
                                 height: 140,
                                 marginBottom: '1rem',
                                 marginTop: '-2.5rem',
+                                backgroundImage: `url(${
+                                    useLightImg ? light : dark
+                                })`,
+                                backgroundPosition: 'center',
+                                backgroundSize: 'cover',
                             }}
-                            src={require('assets/alt.png')}
-                            alt=""
                         />
                     </div>
                     <div className="d-flex justify-content-center">
