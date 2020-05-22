@@ -59,7 +59,7 @@ export default class SectionList extends Component {
                 )}
                 {data.length === 0 &&
                     searching && (
-                        <div className="no-results">No results found.</div>
+                        <div className="no-results">No results found</div>
                     )}
             </div>
         );

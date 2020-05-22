@@ -27,7 +27,7 @@ export default class NoSelection extends PureComponent {
                     </div>
                     <div className="d-flex justify-content-center">
                         <h5 className="no-selection-text">
-                            No contact selected
+                            No Contact Selected
                         </h5>
                     </div>
                 </div>
