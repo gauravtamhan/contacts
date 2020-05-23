@@ -361,45 +361,6 @@ button:focus {
     }
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        color: white;
-        background: #121212;
-    }
-
-    .g-modal,
-    .panel,
-    .section-list .section-header {
-        background-color: #1e1e1e;
-    }
-
-    .section-list .list-row:hover:not(.active) {
-        background-color: #262727;
-    }
-
-    .icon-border,
-    input.form-control,
-    span.input-group-text {
-        background-color: #3a3b3c;
-    }
-
-    .form-control:focus {
-        background-color: #3a3b3c !important;
-        color: white;
-    }
-
-    span.input-group-text,
-    input.form-control::-webkit-input-placeholder,
-    .no-results,
-    .no-selection-text {
-        color: #828282 !important;
-    }
-
-    .g-modal-titlebar {
-        box-shadow: 0px 1px 0px 0 rgba(255, 255, 255, 0.12);
-    }
-}
-
 /*=======================================
             Cube Animation Styles
 ========================================*/
@@ -413,7 +374,8 @@ button:focus {
 .sk-cube-grid .sk-cube {
     width: 33%;
     height: 33%;
-    background-color: #d7dde28c;
+    background-color: #d9d9da;
+    opacity: 0.5;
     float: left;
     -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
     animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
@@ -478,5 +440,52 @@ button:focus {
     35% {
         -webkit-transform: scale3D(0, 0, 1);
         transform: scale3D(0, 0, 1);
+    }
+}
+
+/*=======================================
+            Dark Mode Styles
+========================================*/
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: white;
+        background: #121212;
+    }
+
+    .g-modal,
+    .panel,
+    .section-list .section-header {
+        background-color: #1e1e1e;
+    }
+
+    .section-list .list-row:hover:not(.active) {
+        background-color: #262727;
+    }
+
+    .icon-border,
+    input.form-control,
+    span.input-group-text {
+        background-color: #3a3b3c;
+    }
+
+    .form-control:focus {
+        background-color: #3a3b3c !important;
+        color: white;
+    }
+
+    span.input-group-text,
+    input.form-control::-webkit-input-placeholder,
+    .no-results,
+    .no-selection-text {
+        color: #828282 !important;
+    }
+
+    .g-modal-titlebar {
+        box-shadow: 0px 1px 0px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .sk-cube-grid .sk-cube {
+        background-color: #3a3b3c;
     }
 }

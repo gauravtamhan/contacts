@@ -27,7 +27,7 @@ class App extends Component {
     componentDidMount() {
         window
             .matchMedia('(prefers-color-scheme: dark)')
-            .addEventListener('change', this.checkDarkMode);
+            .addListener(this.checkDarkMode);
 
         fetch(
             'https://randomuser.me/api/1.2/?results=30&exc=login,registered&nat=us'
@@ -58,7 +58,7 @@ class App extends Component {
     componentWillUnmount() {
         window
             .matchMedia('(prefers-color-scheme: dark)')
-            .removeEventListener('change', this.checkDarkMode);
+            .removeListener(this.checkDarkMode);
     }
 
     checkDarkMode = event => {
