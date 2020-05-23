@@ -1,34 +1,40 @@
 {
-    "name": "contacts",
-    "version": "0.1.0",
-    "private": true,
-    "homepage": "https://gauravtamhan.github.io/contacts/",
-    "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.21",
-        "@fortawesome/free-solid-svg-icons": "^5.10.1",
-        "@fortawesome/react-fontawesome": "^0.1.4",
-        "bootstrap": "^4.3.1",
-        "gh-pages": "^1.2.0",
-        "husky": "^0.14.3",
-        "lint-staged": "^7.2.0",
-        "prettier": "^1.13.7",
-        "react": "^16.4.1",
-        "react-dom": "^16.4.1",
-        "react-scripts": "1.1.4"
-    },
-    "scripts": {
-        "precommit": "lint-staged",
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject",
-        "predeploy": "npm run build",
-        "deploy": "gh-pages -d build"
-    },
-    "lint-staged": {
-        "src/**/*.{js,jsx,json,css}": [
-            "prettier --single-quote --tab-width 4 --trailing-comma es5 --write",
-            "git add"
-        ]
-    }
+  "name": "contacts",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://gauravtamhan.github.io/contacts/",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.21",
+    "@fortawesome/free-solid-svg-icons": "^5.10.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "bootstrap": "^4.3.1",
+    "gh-pages": "^1.2.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.7",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "2.0.3"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --tab-width 4 --trailing-comma es5 --write",
+      "git add"
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
