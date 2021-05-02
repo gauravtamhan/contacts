@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-
-const light = require('assets/light.png');
-const dark = require('assets/dark.png');
+import light from 'assets/light.png';
+import dark from 'assets/dark.png';
 
 export default class NoSelection extends PureComponent {
     render() {
