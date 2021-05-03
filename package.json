@@ -9,27 +9,17 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "bootstrap": "^4.3.1",
     "gh-pages": "^1.2.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.2.0",
-    "prettier": "^1.13.7",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-scripts": "4.0.0"
   },
   "scripts": {
-    "precommit": "lint-staged",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --tab-width 4 --trailing-comma es5 --write",
-      "git add"
-    ]
   },
   "browserslist": [
     ">0.2%",

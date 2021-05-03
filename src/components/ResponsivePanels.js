@@ -1,11 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import Panel from 'components/Panel';
-import Modal from 'components/Modal';
+import React, { Component, Fragment } from "react";
+import Modal from "components/Modal";
 
 const sizes = {
-    SM: 'small',
-    MD: 'medium',
-    LG: 'large',
+    SM: "small",
+    MD: "medium",
+    LG: "large",
 };
 
 class ResponsivePanels extends Component {
@@ -19,7 +18,7 @@ class ResponsivePanels extends Component {
 
     componentDidMount() {
         this.checkWindowSize();
-        window.addEventListener('resize', this.checkWindowSize);
+        window.addEventListener("resize", this.checkWindowSize);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -36,7 +35,7 @@ class ResponsivePanels extends Component {
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this.checkWindowSize);
+        window.removeEventListener("resize", this.checkWindowSize);
     }
 
     checkWindowSize = () => {
@@ -64,11 +63,11 @@ class ResponsivePanels extends Component {
             <Fragment>
                 <div className="row bounding-box">
                     <div className="col-12 col-lg-4 full-screen-on-mobile">
-                        <Panel>{leftContent}</Panel>
+                        <div className="panel">{leftContent}</div>
                     </div>
                     {windowSize === LG && (
                         <div className="col-8">
-                            <Panel>{rightContent}</Panel>
+                            <div className="panel">{rightContent}</div>
                         </div>
                     )}
                     {(windowSize === MD || windowSize === SM) && (

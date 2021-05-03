@@ -1,16 +1,16 @@
-import React, { Component, Fragment } from 'react';
-import ResponsivePanels from 'components/ResponsivePanels';
-import SectionList from 'components/SectionList';
-import Detail from 'components/Detail';
-import Loader from 'components/Loader';
-import FontAwesomeIcons from 'components/FontAwesomeIcons';
-import NoSelection from 'components/NoSelection';
+import React, { Component, Fragment } from "react";
+import ResponsivePanels from "components/ResponsivePanels";
+import SectionList from "components/SectionList";
+import Detail from "components/Detail";
+import Loader from "components/Loader";
+import FontAwesomeIcons from "components/FontAwesomeIcons";
+import NoSelection from "components/NoSelection";
 
 class App extends Component {
     constructor(props) {
         super(props);
 
-        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+        const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)")
             .matches;
 
         this.state = {
@@ -19,21 +19,21 @@ class App extends Component {
             filteredList: [],
             isLoading: true,
             selectedPersonID: undefined,
-            searchTerm: '',
+            searchTerm: "",
             searching: false,
         };
     }
 
     componentDidMount() {
         window
-            .matchMedia('(prefers-color-scheme: dark)')
+            .matchMedia("(prefers-color-scheme: dark)")
             .addListener(this.checkDarkMode);
 
         fetch(
-            'https://randomuser.me/api/1.2/?results=30&exc=login,registered&nat=us'
+            "https://randomuser.me/api/1.2/?results=30&exc=login,registered&nat=us"
         )
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
                 data.results.sort((a, b) => {
                     let nameA = a.name.last.toLowerCase();
                     let nameB = b.name.last.toLowerCase();
@@ -57,11 +57,11 @@ class App extends Component {
 
     componentWillUnmount() {
         window
-            .matchMedia('(prefers-color-scheme: dark)')
+            .matchMedia("(prefers-color-scheme: dark)")
             .removeListener(this.checkDarkMode);
     }
 
-    checkDarkMode = event => {
+    checkDarkMode = (event) => {
         this.setState({ useLightImg: !event.matches });
     };
 
@@ -71,18 +71,18 @@ class App extends Component {
 
     escapeRegExp(str) {
         // eslint-disable-next-line
-        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '');
+        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "");
     }
 
     handleSearch(e) {
         const { contactList } = this.state;
         const searchTerm = e.target.value;
         let regex = this.escapeRegExp(searchTerm);
-        regex = regex.split('').join('.*');
-        let temp = contactList.filter(obj =>
-            (obj.name.first + ' ' + obj.name.last).match(new RegExp(regex, 'i'))
+        regex = regex.split("").join(".*");
+        let temp = contactList.filter((obj) =>
+            (obj.name.first + " " + obj.name.last).match(new RegExp(regex, "i"))
         );
-        if (searchTerm === '') {
+        if (searchTerm === "") {
             this.setState({ searching: false });
         } else {
             this.setState({ searching: true });
@@ -117,7 +117,7 @@ class App extends Component {
         const conditionsMet = dataSource.length > 0 && selectedPersonID;
         const selectedPerson =
             conditionsMet &&
-            (filteredList.find(obj => obj.id.value === selectedPersonID) ||
+            (filteredList.find((obj) => obj.id.value === selectedPersonID) ||
                 dataSource[0].data[0]);
 
         const LeftPanelContent = (

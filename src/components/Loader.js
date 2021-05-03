@@ -1,7 +1,7 @@
-import React from 'react';
-import 'assets/style.css';
+import React from "react";
+import "assets/style.css";
 
-const Loader = props => {
+function Loader() {
     return (
         <div className="sk-cube-grid">
             <div className="sk-cube sk-cube1" />
@@ -15,6 +15,6 @@ const Loader = props => {
             <div className="sk-cube sk-cube9" />
         </div>
     );
-};
+}
 
 export default Loader;

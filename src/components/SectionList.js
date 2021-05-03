@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import FontAwesomeIcons from 'components/FontAwesomeIcons';
+import React, { Component } from "react";
+import FontAwesomeIcons from "components/FontAwesomeIcons";
 
 export default class SectionList extends Component {
     renderSections = (section, sectionIndex) => {
@@ -26,11 +26,11 @@ export default class SectionList extends Component {
             <div
                 key={rowIndex}
                 className={
-                    'list-row ' +
+                    "list-row " +
                     (this.props.selectedPerson &&
                     this.props.selectedPerson.id.value === person.id.value
-                        ? 'active'
-                        : '')
+                        ? "active"
+                        : "")
                 }
                 onClick={() => this.props.onPersonChange(person.id.value)}
             >
@@ -39,8 +39,8 @@ export default class SectionList extends Component {
                 </div>
                 <div className="list-data">
                     <p>
-                        {fname}{' '}
-                        <span style={{ fontWeight: '600' }}>{lname}</span>
+                        {fname}{" "}
+                        <span style={{ fontWeight: "600" }}>{lname}</span>
                     </p>
                 </div>
                 <div className="list-extra d-lg-none">
@@ -57,10 +57,9 @@ export default class SectionList extends Component {
                 {data.map((section, sectionIndex) =>
                     this.renderSections(section, sectionIndex)
                 )}
-                {data.length === 0 &&
-                    searching && (
-                        <div className="no-results">No results found.</div>
-                    )}
+                {data.length === 0 && searching && (
+                    <div className="no-results">No results found.</div>
+                )}
             </div>
         );
     }
