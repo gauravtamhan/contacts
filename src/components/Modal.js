@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-function Modal({ children, isModalVisible, closeModal }) {
+function Modal({ children, isVisible, close }) {
     return (
-        isModalVisible && (
+        isVisible && (
             <div className="g-modal-wrapper">
-                <div className="g-modal-overlay" onClick={closeModal} />
+                <div className="g-modal-overlay" onClick={close} />
                 <div className="g-modal">
                     <div className="g-modal-titlebar">
-                        <button className="g-btn" onClick={closeModal}>
+                        <button className="g-btn" onClick={close}>
                             Close
                         </button>
                     </div>

@@ -1,87 +1,58 @@
-import React, { Component, Fragment } from "react";
-import Modal from "components/Modal";
+import React, { useState, useEffect } from 'react';
+import Modal from 'components/Modal';
 
-const sizes = {
-    SM: "small",
-    MD: "medium",
-    LG: "large",
-};
+function getWindowSize(width) {
+    const sizes = {
+        0: 'sm',
+        576: 'md',
+        992: 'lg',
+    };
+    var found = Object.keys(sizes)
+        .reverse()
+        .find((breakPoint) => width >= breakPoint);
+    return sizes[found];
+}
 
-class ResponsivePanels extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            windowSize: null,
-            isModalVisible: false,
-        };
-    }
+function ResponsivePanels({
+    leftContent,
+    rightContent,
+    selectedPerson,
+    updateSelectedPerson,
+}) {
+    const [windowSize, setWindowSize] = useState();
 
-    componentDidMount() {
-        this.checkWindowSize();
-        window.addEventListener("resize", this.checkWindowSize);
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        const { selectedPerson } = this.props;
-        const { isModalVisible } = this.state;
-
-        if (prevProps.selectedPerson !== selectedPerson && selectedPerson) {
-            this.setState({ isModalVisible: true });
-        }
-
-        if (prevState.isModalVisible !== isModalVisible && !isModalVisible) {
-            this.props.updateSelectedPerson(undefined);
-        }
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.checkWindowSize);
-    }
-
-    checkWindowSize = () => {
-        const { SM, MD, LG } = sizes;
-
-        const isSmall = window.innerWidth < 576;
-        const isMedium = window.innerWidth < 992;
-
-        let size = isSmall ? SM : isMedium ? MD : LG;
-
-        this.setState({ windowSize: size });
+    const updateWindowSize = () => {
+        setWindowSize(getWindowSize(window.innerWidth));
     };
 
-    closeModal = () => {
-        this.setState({ isModalVisible: false });
-    };
+    useEffect(() => {
+        updateWindowSize();
+        window.addEventListener('resize', updateWindowSize);
 
-    render() {
-        const { windowSize, isModalVisible } = this.state;
-        const { leftContent, rightContent } = this.props;
+        return () => window.removeEventListener('resize', updateWindowSize);
+    }, []);
 
-        const { SM, MD, LG } = sizes;
-
-        return (
-            <Fragment>
-                <div className="row bounding-box">
-                    <div className="col-12 col-lg-4 full-screen-on-mobile">
-                        <div className="panel">{leftContent}</div>
-                    </div>
-                    {windowSize === LG && (
-                        <div className="col-8">
-                            <div className="panel">{rightContent}</div>
-                        </div>
-                    )}
-                    {(windowSize === MD || windowSize === SM) && (
-                        <Modal
-                            isModalVisible={isModalVisible}
-                            closeModal={this.closeModal}
-                        >
-                            {rightContent}
-                        </Modal>
-                    )}
+    return (
+        <>
+            <div className="row bounding-box">
+                <div className="col-12 col-lg-4 full-screen-on-mobile">
+                    <div className="panel">{leftContent}</div>
                 </div>
-            </Fragment>
-        );
-    }
+                {windowSize === 'lg' ? (
+                    <div className="col-8">
+                        <div className="panel">{rightContent}</div>
+                    </div>
+                ) : (
+                    <Modal
+                        isVisible={!!selectedPerson}
+                        close={() => updateSelectedPerson(undefined)}
+                    >
+                        {rightContent}
+                    </Modal>
+                )}
+            </div>
+        </>
+    );
 }
 
 export default ResponsivePanels;

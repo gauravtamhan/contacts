@@ -1,11 +1,16 @@
-import React from "react";
-import FontAwesomeIcons from "components/FontAwesomeIcons";
-import { toCapital, convertNat } from "shared/helpers";
+import React from 'react';
+import FontAwesomeIcons from 'components/FontAwesomeIcons';
+import { toCapital, convertNat } from 'shared/helpers';
 
 const dateConfig = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+};
+
+const style = {
+    fontWeight: '300',
+    marginLeft: 10,
 };
 
 function Detail({ data }) {
@@ -14,11 +19,14 @@ function Detail({ data }) {
         dob,
         location: { street, city, state, postcode },
         nat,
+        phone,
+        email,
+        picture,
     } = data;
     const fname = toCapital(name.first);
     const lname = toCapital(name.last);
     const title = toCapital(name.title);
-    const bday = new Date(dob.date).toLocaleDateString("en-US", dateConfig);
+    const bday = new Date(dob.date).toLocaleDateString('en-US', dateConfig);
     const addressLine1 = toCapital(street);
     const addressLine2 = `${toCapital(city)}, ${toCapital(state)} ${postcode}`;
 
@@ -26,29 +34,23 @@ function Detail({ data }) {
 
     const items = [
         {
-            icon: "phone-alt",
-            content: <p>{data.phone}</p>,
+            icon: 'phone-alt',
+            content: <p>{phone}</p>,
         },
         {
-            icon: "envelope",
-            content: <p>{data.email}</p>,
+            icon: 'envelope',
+            content: <p>{email}</p>,
         },
         {
-            icon: "birthday-cake",
+            icon: 'birthday-cake',
             content: (
                 <p>
-                    {bday}{" "}
-                    <span
-                        style={{
-                            fontWeight: "300",
-                            marginLeft: 10,
-                        }}
-                    >{`(${dob.age} years old)`}</span>
+                    {bday} <span style={style}>{`(${dob.age} years old)`}</span>
                 </p>
             ),
         },
         {
-            icon: "map-marker-alt",
+            icon: 'map-marker-alt',
             content: (
                 <>
                     <p>{addressLine1}</p>
@@ -64,11 +66,7 @@ function Detail({ data }) {
             <div className="detail-box">
                 <div className="row">
                     <div className="col-sm-4 d-flex justify-content-center spacer">
-                        <img
-                            className="avatar-lg"
-                            src={data.picture.large}
-                            alt=""
-                        />
+                        <img className="avatar-lg" src={picture.large} alt="" />
                     </div>
                     <div className="col-sm-8 d-none d-sm-flex name-container">
                         <h5>{title}</h5>

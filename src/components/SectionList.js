@@ -1,46 +1,44 @@
-import React, { Component } from "react";
-import FontAwesomeIcons from "components/FontAwesomeIcons";
+import React from 'react';
+import FontAwesomeIcons from 'components/FontAwesomeIcons';
+import { toCapital } from 'shared/helpers';
 
-export default class SectionList extends Component {
-    renderSections = (section, sectionIndex) => {
+function SectionList({ data, searching, selectedPerson, onPersonChange }) {
+    const renderSections = (section, sectionIndex) => {
         return (
             <div key={section.title}>
                 <div className="section-header">
                     <h6>{section.title.toUpperCase()}</h6>
                 </div>
                 {section.data.map((obj, rowIndex) =>
-                    this.renderRows(obj, rowIndex, sectionIndex)
+                    renderRows(obj, rowIndex, sectionIndex)
                 )}
             </div>
         );
     };
 
-    renderRows = (person, rowIndex, sectionIndex) => {
-        let fname =
-            person.name.first.charAt(0).toUpperCase() +
-            person.name.first.slice(1);
-        let lname =
-            person.name.last.charAt(0).toUpperCase() +
-            person.name.last.slice(1);
+    const renderRows = (person, rowIndex) => {
+        const fname = toCapital(person.name.first);
+        const lname = toCapital(person.name.last);
+
         return (
             <div
                 key={rowIndex}
                 className={
-                    "list-row " +
-                    (this.props.selectedPerson &&
-                    this.props.selectedPerson.id.value === person.id.value
-                        ? "active"
-                        : "")
+                    'list-row ' +
+                    (selectedPerson &&
+                    selectedPerson.id.value === person.id.value
+                        ? 'active'
+                        : '')
                 }
-                onClick={() => this.props.onPersonChange(person.id.value)}
+                onClick={() => onPersonChange(person.id.value)}
             >
                 <div className="avatar">
                     <img src={person.picture.medium} alt="" />
                 </div>
                 <div className="list-data">
                     <p>
-                        {fname}{" "}
-                        <span style={{ fontWeight: "600" }}>{lname}</span>
+                        {fname}{' '}
+                        <span style={{ fontWeight: '600' }}>{lname}</span>
                     </p>
                 </div>
                 <div className="list-extra d-lg-none">
@@ -50,17 +48,16 @@ export default class SectionList extends Component {
         );
     };
 
-    render() {
-        const { data, searching } = this.props;
-        return (
-            <div className="section-list">
-                {data.map((section, sectionIndex) =>
-                    this.renderSections(section, sectionIndex)
-                )}
-                {data.length === 0 && searching && (
-                    <div className="no-results">No results found.</div>
-                )}
-            </div>
-        );
-    }
+    return (
+        <div className="section-list">
+            {data.map((section, sectionIndex) =>
+                renderSections(section, sectionIndex)
+            )}
+            {data.length === 0 && searching && (
+                <div className="no-results">No results found.</div>
+            )}
+        </div>
+    );
 }
+
+export default SectionList;
