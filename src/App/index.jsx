@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import API_URL from 'shared/utils/consts';
 import ResponsiveLayout from './ResponsiveLayout';
 import ContactList from './ContactList';
 import ContactDetails from './ContactDetails';
 import Loader from './Loader';
+import Error from './Error';
 
 import useRequest from './useRequest';
-
-const URL = 'https://randomuser.me/api/1.2/?results=30&exc=login,registered&nat=us';
 
 const sortData = (arr) =>
     arr.sort((a, b) => {
@@ -16,10 +16,11 @@ const sortData = (arr) =>
     });
 
 function App() {
-    const [contacts, loading] = useRequest(URL, sortData);
+    const [contacts, loading, error] = useRequest(API_URL, sortData);
     const [selectedContactId, setSelectedContactId] = useState();
 
     if (loading) return <Loader />;
+    if (error) return <Error message={error} />;
 
     const selectedContact = contacts.find((contact) => contact.id.value === selectedContactId);
 

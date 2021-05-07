@@ -8,11 +8,6 @@ const dateConfig = {
     day: 'numeric',
 };
 
-const style = {
-    fontWeight: '300',
-    marginLeft: 10,
-};
-
 function Details({ contact }) {
     const {
         name,
@@ -42,12 +37,7 @@ function Details({ contact }) {
         },
         {
             icon: 'birthday-cake',
-            content: (
-                <p>
-                    {bday}
-                    <span style={style}>{`(${dob.age} years old)`}</span>
-                </p>
-            ),
+            content: <p>{`${bday} (${dob.age} years old)`}</p>,
         },
         {
             icon: 'map-marker-alt',

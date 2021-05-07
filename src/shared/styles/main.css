@@ -1,10 +1,6 @@
 body {
     height: 100vh;
-    background: linear-gradient(
-        135deg,
-        rgba(250, 250, 252, 1) 0%,
-        rgba(245, 246, 248, 1) 100%
-    );
+    background: linear-gradient(135deg, rgba(250, 250, 252, 1) 0%, rgba(245, 246, 248, 1) 100%);
 }
 
 .bounding-box {
@@ -20,8 +16,15 @@ body {
     overflow: hidden;
     background-color: white;
     border-radius: 4px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04),
-        0px 30px 40px -15px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04), 0px 30px 40px -15px rgba(0, 0, 0, 0.06);
+}
+
+.panel.g-alert {
+    height: unset;
+    min-height: 132px;
+    min-width: 250px;
+    margin: 0 auto;
+    padding: 24px;
 }
 
 .section-list {
@@ -85,7 +88,6 @@ body {
 
 .section-list .list-row .list-data > p {
     margin: 0 0 0 12px;
-    font-weight: 300;
 }
 
 .section-list .list-row .list-extra {
@@ -296,8 +298,8 @@ button:focus {
     height: calc(75vh);
     max-height: 580px;
     background-color: white;
-    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2),
-        0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+        0 6px 30px 5px rgba(0, 0, 0, 0.12);
 }
 
 .g-modal-titlebar {

@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
 import FontAwesomeIcons from 'shared/components/FontAwesomeIcons';
 import toCapital from 'shared/utils/stringFormat';
@@ -14,7 +15,6 @@ function SectionList({ data = [], selectedContactId, setSelectedContactId }) {
             <div
                 key={rowIndex}
                 role="menuitem"
-                tabIndex="0"
                 className={`list-row ${isActive ? 'active' : ''}`}
                 onClick={() => setSelectedContactId(id.value)}
                 onKeyPress={() => setSelectedContactId(id.value)}
@@ -46,7 +46,7 @@ function SectionList({ data = [], selectedContactId, setSelectedContactId }) {
     return (
         <div className="section-list">
             {data.map((section) => renderSections(section))}
-            {data.length === 0 && <div className="no-results">No results.</div>}
+            {data.length === 0 && <div className="no-results">No results</div>}
         </div>
     );
 }
