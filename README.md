@@ -1,6 +1,6 @@
 # React Contacts
 
-A simple contact manager application built with React.js and Bootstrap. Data pulled from [randomuser.me](https://randomuser.me/). View the live version [here](https://gauravtamhan.com/contacts/).
+A simple contact manager built with React.js and Bootstrap. Data pulled from [randomuser.me](https://randomuser.me/). View the live version [here](https://gauravtamhan.com/contacts/).
 
 ![Contacts Screenshot](screenshots/image-1.png 'Contacts Screenshot')
 
