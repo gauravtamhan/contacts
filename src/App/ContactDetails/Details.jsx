@@ -1,6 +1,6 @@
 import React from 'react';
-import FontAwesomeIcons from 'components/FontAwesomeIcons';
-import { toCapital, convertNat } from 'shared/helpers';
+import FontAwesomeIcons from 'shared/components/FontAwesomeIcons';
+import toCapital from 'shared/utils/stringFormat';
 
 const dateConfig = {
     year: 'numeric',
@@ -13,16 +13,15 @@ const style = {
     marginLeft: 10,
 };
 
-function Detail({ data }) {
+function Details({ contact }) {
     const {
         name,
         dob,
         location: { street, city, state, postcode },
-        nat,
         phone,
         email,
         picture,
-    } = data;
+    } = contact;
     const fname = toCapital(name.first);
     const lname = toCapital(name.last);
     const title = toCapital(name.title);
@@ -30,7 +29,7 @@ function Detail({ data }) {
     const addressLine1 = toCapital(street);
     const addressLine2 = `${toCapital(city)}, ${toCapital(state)} ${postcode}`;
 
-    const nationality = convertNat(nat);
+    const nationality = 'United States';
 
     const items = [
         {
@@ -45,7 +44,8 @@ function Detail({ data }) {
             icon: 'birthday-cake',
             content: (
                 <p>
-                    {bday} <span style={style}>{`(${dob.age} years old)`}</span>
+                    {bday}
+                    <span style={style}>{`(${dob.age} years old)`}</span>
                 </p>
             ),
         },
@@ -77,8 +77,8 @@ function Detail({ data }) {
                     </div>
                 </div>
                 <div className="separator" />
-                {items.map(({ icon, content }, index) => (
-                    <div key={index} className="row align-items-center spacer">
+                {items.map(({ icon, content }) => (
+                    <div key={icon} className="row align-items-center spacer">
                         <div className="col-3 col-sm-4 d-flex justify-content-center">
                             <div className="icon-container">
                                 <div className="icon-border">
@@ -94,4 +94,4 @@ function Detail({ data }) {
     );
 }
 
-export default Detail;
+export default Details;

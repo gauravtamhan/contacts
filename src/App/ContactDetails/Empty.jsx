@@ -1,8 +1,8 @@
-import React from "react";
-import light from "assets/light.png";
-import dark from "assets/dark.png";
+import React from 'react';
+import light from './assets/light.png';
+import dark from './assets/dark.png';
 
-function NoSelection({ useLightImg }) {
+function Empty({ darkMode }) {
     return (
         <div className="detail-container">
             <div className="detail-box d-flex flex-column">
@@ -11,13 +11,11 @@ function NoSelection({ useLightImg }) {
                         style={{
                             width: 140,
                             height: 140,
-                            marginBottom: "1rem",
-                            marginTop: "-2.5rem",
-                            backgroundImage: `url(${
-                                useLightImg ? light : dark
-                            })`,
-                            backgroundPosition: "center",
-                            backgroundSize: "cover",
+                            marginBottom: '1rem',
+                            marginTop: '-2.5rem',
+                            backgroundImage: `url(${darkMode ? dark : light})`,
+                            backgroundPosition: 'center',
+                            backgroundSize: 'cover',
                         }}
                     />
                 </div>
@@ -29,4 +27,4 @@ function NoSelection({ useLightImg }) {
     );
 }
 
-export default NoSelection;
+export default Empty;
