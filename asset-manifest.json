@@ -1,19 +1,25 @@
 {
   "files": {
-    "main.css": "/contacts/static/css/main.2fecc716.chunk.css",
-    "main.js": "/contacts/static/js/main.f914004f.chunk.js",
-    "main.js.map": "/contacts/static/js/main.f914004f.chunk.js.map",
-    "runtime~main.js": "/contacts/static/js/runtime~main.79ac44f6.js",
-    "runtime~main.js.map": "/contacts/static/js/runtime~main.79ac44f6.js.map",
-    "static/css/2.85f22f3a.chunk.css": "/contacts/static/css/2.85f22f3a.chunk.css",
-    "static/js/2.85de059d.chunk.js": "/contacts/static/js/2.85de059d.chunk.js",
-    "static/js/2.85de059d.chunk.js.map": "/contacts/static/js/2.85de059d.chunk.js.map",
+    "main.css": "/contacts/static/css/main.7504b618.chunk.css",
+    "main.js": "/contacts/static/js/main.a07d5feb.chunk.js",
+    "main.js.map": "/contacts/static/js/main.a07d5feb.chunk.js.map",
+    "runtime-main.js": "/contacts/static/js/runtime-main.e2d6a4c8.js",
+    "runtime-main.js.map": "/contacts/static/js/runtime-main.e2d6a4c8.js.map",
+    "static/css/2.ba27c2ca.chunk.css": "/contacts/static/css/2.ba27c2ca.chunk.css",
+    "static/js/2.fb3ea36b.chunk.js": "/contacts/static/js/2.fb3ea36b.chunk.js",
+    "static/js/2.fb3ea36b.chunk.js.map": "/contacts/static/js/2.fb3ea36b.chunk.js.map",
     "index.html": "/contacts/index.html",
-    "precache-manifest.6a070753ac9d2817e381fbbf8e763269.js": "/contacts/precache-manifest.6a070753ac9d2817e381fbbf8e763269.js",
-    "service-worker.js": "/contacts/service-worker.js",
-    "static/css/2.85f22f3a.chunk.css.map": "/contacts/static/css/2.85f22f3a.chunk.css.map",
-    "static/css/main.2fecc716.chunk.css.map": "/contacts/static/css/main.2fecc716.chunk.css.map",
-    "static/media/dark.png": "/contacts/static/media/dark.e35ee1a1.png",
-    "static/media/light.png": "/contacts/static/media/light.27f1d060.png"
-  }
+    "static/css/2.ba27c2ca.chunk.css.map": "/contacts/static/css/2.ba27c2ca.chunk.css.map",
+    "static/css/main.7504b618.chunk.css.map": "/contacts/static/css/main.7504b618.chunk.css.map",
+    "static/js/2.fb3ea36b.chunk.js.LICENSE.txt": "/contacts/static/js/2.fb3ea36b.chunk.js.LICENSE.txt",
+    "static/media/dark.63ad56cf.png": "/contacts/static/media/dark.63ad56cf.png",
+    "static/media/light.afda4434.png": "/contacts/static/media/light.afda4434.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e2d6a4c8.js",
+    "static/css/2.ba27c2ca.chunk.css",
+    "static/js/2.fb3ea36b.chunk.js",
+    "static/css/main.7504b618.chunk.css",
+    "static/js/main.a07d5feb.chunk.js"
+  ]
 }
