@@ -1,8 +1,15 @@
 # React Contacts
 
-A simple contact manager built with React.js and Bootstrap. Data pulled from [randomuser.me](https://randomuser.me/). View the live version [here](https://gauravtamhan.com/contacts/).
+A simple contacts viewer built with React.js and Bootstrap. Data pulled from [randomuser.me](https://randomuser.me/). View the live version [here](https://gauravtamhan.com/contacts/).
 
 ![Contacts Screenshot](screenshots/image-1.png 'Contacts Screenshot')
+
+A few notable aspects of this project include:
+
+-   Re-written using functional components with Hooks
+-   Fully responsive UI that adapts to all screen sizes
+-   Dark mode support
+-   Clean and modern architecture
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
