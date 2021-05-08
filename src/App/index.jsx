@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import API_URL from 'shared/utils/consts';
+import { API_URL } from 'shared/utils/consts';
+import { findById } from 'shared/utils/helpers';
+import { useRequest } from 'shared/hooks';
+import { Alert, Loader } from 'shared/components';
 import ResponsiveLayout from './ResponsiveLayout';
 import ContactList from './ContactList';
 import ContactDetails from './ContactDetails';
-import Loader from './Loader';
-import Error from './Error';
-
-import useRequest from './useRequest';
 
 const sortData = (arr) =>
     arr.sort((a, b) => {
@@ -20,9 +19,9 @@ function App() {
     const [selectedContactId, setSelectedContactId] = useState();
 
     if (loading) return <Loader />;
-    if (error) return <Error message={error} />;
+    if (error) return <Alert title="Error" message={error} />;
 
-    const selectedContact = contacts.find((contact) => contact.id.value === selectedContactId);
+    const selectedContact = findById(contacts, selectedContactId);
 
     return (
         <div className="container">

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useWindowSize } from 'shared/hooks';
+import { findById } from 'shared/utils/helpers';
 import SearchField from './SearchField';
 import SectionList from './SectionList';
 
@@ -7,21 +9,35 @@ const sanitize = (str) => str.replace(/[^a-zA-Z ]/g, '');
 function ContactList({ contacts, selectedContactId, setSelectedContactId }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [list, setList] = useState(contacts);
+    const isSmallWindow = useWindowSize();
+
+    const itemInListAlreadySelected = findById(list, selectedContactId);
 
     useEffect(() => {
         const search = () => {
             const cleanedSearchTerm = sanitize(searchTerm);
             const regex = cleanedSearchTerm.split('').join('.*');
-            const temp = contacts.filter((obj) =>
+            const searchResults = contacts.filter((obj) =>
                 `${obj.name.first} ${obj.name.last}`.match(new RegExp(regex, 'i'))
             );
 
-            setList(temp);
-            setSelectedContactId(temp[0]?.id.value);
+            setList(searchResults);
+
+            if (!isSmallWindow && !itemInListAlreadySelected) {
+                setSelectedContactId(searchResults[0]?.id.value);
+            }
         };
 
-        search();
-    }, [searchTerm, contacts, setSelectedContactId]);
+        if (searchTerm) search();
+        if (!searchTerm) setList(contacts);
+    }, [
+        searchTerm,
+        contacts,
+        selectedContactId,
+        setSelectedContactId,
+        isSmallWindow,
+        itemInListAlreadySelected,
+    ]);
 
     const buildDataSource = () => {
         const result = list.reduce((acc, curr) => {

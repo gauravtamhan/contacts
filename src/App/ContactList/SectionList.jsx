@@ -1,21 +1,21 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 import React from 'react';
-import FontAwesomeIcons from 'shared/components/FontAwesomeIcons';
-import toCapital from 'shared/utils/stringFormat';
+import { FontAwesomeIcons } from 'shared/components';
+import { toCapital } from 'shared/utils/helpers';
 
 function SectionList({ data = [], selectedContactId, setSelectedContactId }) {
     const renderRows = (contact, rowIndex) => {
         const { name, id, picture } = contact;
         const fname = toCapital(name.first);
         const lname = toCapital(name.last);
-        const isActive = selectedContactId === contact.id.value;
+        const isRowSelected = selectedContactId === contact.id.value;
 
         return (
             <div
                 key={rowIndex}
                 role="menuitem"
-                className={`list-row ${isActive ? 'active' : ''}`}
+                className={`list-row ${isRowSelected ? 'active' : ''}`}
                 onClick={() => setSelectedContactId(id.value)}
                 onKeyPress={() => setSelectedContactId(id.value)}
             >

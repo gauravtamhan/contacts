@@ -1,5 +1,5 @@
 import React from 'react';
-import FontAwesomeIcons from 'shared/components/FontAwesomeIcons';
+import { FontAwesomeIcons } from 'shared/components';
 
 function SearchField({ searchTerm, handleChange }) {
     return (

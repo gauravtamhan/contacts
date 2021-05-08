@@ -1,4 +1,4 @@
-const toCapital = (s) => {
+export const toCapital = (s) => {
     const arr = s.split(' ');
     for (let i = 0; i < arr.length; i++) {
         arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
@@ -6,4 +6,4 @@ const toCapital = (s) => {
     return arr.join(' ');
 };
 
-export default toCapital;
+export const findById = (arr, givenId) => arr.find((item) => item.id.value === givenId);

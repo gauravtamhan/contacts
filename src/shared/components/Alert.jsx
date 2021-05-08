@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Error({ message }) {
+function Alert({ title, message }) {
     return (
         <div className="container">
             <div className="row bounding-box">
@@ -8,7 +8,7 @@ function Error({ message }) {
                     <div className="d-flex justify-content-center">
                         <div className="d-inline-block">
                             <div className="panel g-alert">
-                                <h4 className="mb-3">Error</h4>
+                                <h4 className="mb-3">{title}</h4>
                                 <p>{message}</p>
                             </div>
                         </div>
@@ -19,4 +19,4 @@ function Error({ message }) {
     );
 }
 
-export default Error;
+export default Alert;

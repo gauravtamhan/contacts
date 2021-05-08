@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import Modal from './Modal';
+import React from 'react';
+import { useWindowSize } from 'shared/hooks';
+
+function ResponsiveModal({ children, isVisible, close }) {
+    return isVisible ? (
+        <div className="g-modal-wrapper">
+            <div className="g-modal-overlay" onClick={close} aria-hidden="true" />
+            <div className="g-modal">
+                <div className="g-modal-titlebar">
+                    <button type="button" className="g-btn" onClick={close}>
+                        Close
+                    </button>
+                </div>
+                <div className="g-modal-content">{children}</div>
+            </div>
+        </div>
+    ) : null;
+}
 
 function ResponsiveLayout({ leftContent, rightContent, modalVisible, closeModal }) {
-    const [isSmall, setIsSmall] = useState();
-
-    const updateWindowSize = () => {
-        setIsSmall(window.innerWidth < 992);
-    };
-
-    useEffect(() => {
-        updateWindowSize();
-        window.addEventListener('resize', updateWindowSize);
-
-        return () => window.removeEventListener('resize', updateWindowSize);
-    }, []);
+    const isSmallWindow = useWindowSize();
 
     return (
         <>
@@ -21,14 +26,14 @@ function ResponsiveLayout({ leftContent, rightContent, modalVisible, closeModal 
                 <div className="col-12 col-lg-4 full-screen-on-mobile">
                     <div className="panel">{leftContent}</div>
                 </div>
-                {!isSmall ? (
+                {!isSmallWindow ? (
                     <div className="col-8">
                         <div className="panel">{rightContent}</div>
                     </div>
                 ) : (
-                    <Modal isVisible={modalVisible} close={closeModal}>
+                    <ResponsiveModal isVisible={modalVisible} close={closeModal}>
                         {rightContent}
-                    </Modal>
+                    </ResponsiveModal>
                 )}
             </div>
         </>
