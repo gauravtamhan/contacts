@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const fetchPosts = async (url) => {
+const fetchData = async (url) => {
     const response = await fetch(url);
     const json = await response.json();
     return json;
@@ -15,7 +15,7 @@ function useRequest(url, proccessingFn) {
         async function fetchResource() {
             try {
                 setLoading(true);
-                const response = await fetchPosts(url);
+                const response = await fetchData(url);
                 const { results } = response;
                 setData(proccessingFn ? proccessingFn(results) : results);
             } catch (e) {
@@ -28,7 +28,7 @@ function useRequest(url, proccessingFn) {
         fetchResource();
     }, [url, proccessingFn]);
 
-    return [data, loading, error];
+    return { data, loading, error };
 }
 
 export default useRequest;

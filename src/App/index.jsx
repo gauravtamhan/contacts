@@ -7,7 +7,7 @@ import ResponsiveLayout from './ResponsiveLayout';
 import ContactList from './ContactList';
 import ContactDetails from './ContactDetails';
 
-const sortData = (arr) =>
+const sortAlphabetically = (arr) =>
     arr.sort((a, b) => {
         const nameA = a.name.last.toLowerCase();
         const nameB = b.name.last.toLowerCase();
@@ -15,7 +15,7 @@ const sortData = (arr) =>
     });
 
 function App() {
-    const [contacts, loading, error] = useRequest(API_URL, sortData);
+    const { data: contacts, loading, error } = useRequest(API_URL, sortAlphabetically);
     const [selectedContactId, setSelectedContactId] = useState();
 
     if (loading) return <Loader />;

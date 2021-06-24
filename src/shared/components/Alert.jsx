@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
 function Alert({ title, message }) {
     return (
@@ -18,5 +19,10 @@ function Alert({ title, message }) {
         </div>
     );
 }
+
+Alert.propTypes = {
+    title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+};
 
 export default Alert;
